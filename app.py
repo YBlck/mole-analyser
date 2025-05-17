@@ -16,7 +16,7 @@ MODEL_PATH = STATIC_FOLDER + "/model/" + MODEL_FILE_NAME
 MODEL_URL = "https://drive.google.com/uc?id=16V2HmnBnCCJMInGQNrc0EU0A_AZWZb1f"
 
 if not os.path.exists(MODEL_PATH):
-    os.makedirs("models", exist_ok=True)
+    os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
     gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
 
 cnn_model = load_learner(MODEL_PATH)
@@ -43,4 +43,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
