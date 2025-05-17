@@ -2,7 +2,7 @@ import os
 
 from fastai.vision.core import PILImage
 
-LABEL = ["Dangerous", "Safe"]
+LABEL = ["Safe", "Dangerous"]
 
 
 def classify(model, filepath):
