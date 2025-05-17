@@ -1,8 +1,7 @@
 import os
-from pathlib import Path
 
 import gdown
-from fastai.vision.all import *
+from fastai.vision.all import load_learner
 from flask import Flask, request, render_template
 from werkzeug.utils import secure_filename
 
@@ -22,6 +21,7 @@ if not os.path.exists(MODEL_PATH):
 
 cnn_model = load_learner(MODEL_PATH)
 
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
@@ -33,9 +33,14 @@ def index():
 
             result = classify(cnn_model, filepath)
 
-            return render_template("index.html", result=result["prediction"], prob=result["probability"])
+            return render_template(
+                "index.html",
+                result=result["prediction"],
+                prob=result["probability"],
+            )
 
     return render_template("index.html", result=None)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -4,6 +4,7 @@ from fastai.vision.core import PILImage
 
 LABEL = ["Dangerous", "Safe"]
 
+
 def classify(model, filepath):
     try:
         img = PILImage.create(filepath)
