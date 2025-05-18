@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Mole Checker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+</head>
+
+
+<body class="bg-light">
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1 class="text-center mb-4">Mole Analyzer</h1>
+
+      <div class="card p-4 shadow-sm">
+        <form method="POST" enctype="multipart/form-data">
+          <div class="mb-3">
+            <h5 class="align-center"><label for="image" class="form-label">Upload an image:</label></h5>
+            <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Analyze</button>
+        </form>
+      </div>
+
+      {% if result %}
+      {% set alert_class = "info" if result == "Safe" else "danger" %}
+      <div class="alert alert-{{ alert_class }} mt-4 text-center">
+        <h4 class="alert-heading">Result:</h4>
+        <p class="mb-1"><strong>{{ result }}</strong></p>
+        <hr>
+        <p class="mb-0">Confidence: <strong>{{ prob }}%</strong></p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
