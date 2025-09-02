@@ -10,10 +10,13 @@ from classifier import classify
 app = Flask(__name__)
 
 STATIC_FOLDER = "static"
-UPLOAD_FOLDER = STATIC_FOLDER + "/uploads/"
-MODEL_FILE_NAME = "mole_checker_model.pkl"
-MODEL_PATH = STATIC_FOLDER + "/model/" + MODEL_FILE_NAME
-MODEL_URL = "https://drive.google.com/uc?id=16V2HmnBnCCJMInGQNrc0EU0A_AZWZb1f"
+UPLOAD_FOLDER = os.path.join(STATIC_FOLDER, "uploads")
+
+MODEL_FILE_NAME = "mole_checker_model_91.pkl"
+MODEL_PATH = os.path.join(STATIC_FOLDER, "model", MODEL_FILE_NAME)
+MODEL_URL = "https://drive.google.com/uc?id=1NLLECGjQh0Q--M50utRfM11PbRu1TyJX"
+
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 if not os.path.exists(MODEL_PATH):
     os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
@@ -43,4 +46,5 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
