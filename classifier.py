@@ -8,10 +8,10 @@ LABEL = ["Safe", "Suspicious"]
 def classify(model, filepath):
     try:
         img = PILImage.create(filepath)
-        pred, pred_idx, probs = model.predict(img)
-        prob = float(probs[pred_idx]) * 100
+        prediction, prediction_idx, probs = model.predict(img)
+        prob = float(probs[prediction_idx]) * 100
         result = {
-            "prediction": LABEL[int(pred)],
+            "prediction": LABEL[int(prediction_idx)],
             "probability": round(prob, 2)
         }
     finally:
